@@ -3,11 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Example</title>
+    <title>IP Tracker</title>
 </head>
 <body>
+    <h1>Welcome to the IP Tracker</h1>
+    <p>This website will collect your IP address with your consent.</p>
+    
+    <button onclick="trackIP()">Give Consent</button>
 
-    <img src="IMG-20231213-WA0010.jpg" alt="Description of the image">
-
+    <script>
+        function trackIP() {
+            // Get user's consent and fetch the IP address
+            if (confirm("Do you consent to share your IP address?")) {
+                fetch('https://api64.ipify.org?format=json')
+                    .then(response => response.json())
+                    .then(data => alert('Your IP address is: ' + data.ip))
+                    .catch(error => console.error('Error fetching IP:', error));
+            }
+        }
+    </script>
 </body>
 </html>
